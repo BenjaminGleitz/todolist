@@ -31,6 +31,14 @@ const task = {
         // On ajoute l'écoute de la saisie d'une touche du clavier
         taskTitleFieldElement.addEventListener('keydown', task.handleValideNewTaskTitleOnEnterKey);
 
+        // ----------------------------------------------------------------
+        // Ecoute de l'évènement permettant de compléter une tâche
+        // ----------------------------------------------------------------
+        // On récupère le bouton permettant de terminer une tâche
+        const taskCompleteButtonElement = taskElement.querySelector('.task__button--validate');
+        // On ajoute l'écoute du clic sur ce bouton
+        taskCompleteButtonElement.addEventListener('click', task.handleCompleteTask);
+
     },
 
     handleEnableTaskTitleEditMode: function(evt) {
@@ -91,5 +99,34 @@ const task = {
         if (evt.key === 'Enter') {
             task.handleValidateNewTaskTitle(evt);
         }
+    },
+
+    /**
+     * Méthode gérant le passage d'une tâche non terminée à une tâche terminée/complétée
+     * lors du clic sur le bouton 'complete' de la tâche
+     */
+    handleCompleteTask: function(evt) {
+        console.log('Au clic, je passe dans handleCompleteTask');
+
+        // Récupération du bouton à l'origine de l'évènement
+        const taskCompleteButtonElement = evt.currentTarget;
+        // Recherce de la tâche à laquelle appartient ce bouton
+        const taskElement = taskCompleteButtonElement.closest('.task');
+        // Modification de la complétion de la tâche dans le DOM
+        task.markTaskAsComplete(taskElement);
+    },
+
+    // #############################################################
+    //                            DOM
+    // #############################################################
+
+    /**
+     * Méthode permettant de terminer/compléter une tâche visuellement dans la page
+     * 
+     * @param {HTMLElement} taskElement 
+     */
+    markTaskAsComplete: function(taskElement) {
+        
+        taskElement.classList.replace('task--todo','task--complete');
     },
 };
