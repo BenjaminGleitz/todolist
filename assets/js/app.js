@@ -3,6 +3,8 @@
  */
 const app = {
 
+    apiBaseURL : 'https://benoclock.github.io/S07-todolist',
+
     /**
      * La méthode init contient le code que l'on veut exécuter au lancement
      * de l'applicatoin
@@ -12,6 +14,7 @@ const app = {
         console.log('le fichier app a bien été appellé');
         tasksList.init();
         newTaskForm.init();
+        categoriesList.init();
     }
 };
 
