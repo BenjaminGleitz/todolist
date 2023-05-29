@@ -11,6 +11,7 @@ const app = {
 
         console.log('le fichier app a bien été appellé');
         tasksList.init();
+        newTaskForm.init();
     }
 };
 

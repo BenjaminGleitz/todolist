@@ -31,4 +31,24 @@ const tasksList = {
         }
     },
 
+    // ####################################################################
+    //                               DOM
+    // ####################################################################
+
+    /**
+     * Ajoute un élément task dans la liste des tâches
+     * 
+     * @param {HTMLElement} taskElement L'élément tâche à ajouter
+     */
+    insertTaskIntoTasksList: function(taskElement) {
+        
+        // Récupération de l'élément contenant la liste des tâches
+        const tasksListElement = document.querySelector('.tasks');
+
+        // Insertion de la tâche dans la liste
+        tasksListElement.prepend(taskElement);
+
+        console.log(tasksListElement);
+    }
+
 };

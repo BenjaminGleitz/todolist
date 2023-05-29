@@ -5,19 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TodoList</title>
-  <!-- L'intégration repose en partie sur le framework CSS Bulma :
-    - Bulma propose uniquement des styles CSS
-    - Bulma ne gère pas les interactions Javascript contrairement à Bootstrap
-    - Si on veut gérer des interactions, il faudra donc les écrire nous même en Javascript
-    - Documentation : https://bulma.io/documentation/
-  -->
+  
   <link rel="stylesheet" href="assets/css/bulma.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   
   <script defer src="assets/js/app.js"></script>
   <script defer src="assets/js/components/task.js"></script>
   <script defer src="assets/js/components/tasksList.js"></script>
+  <script defer src="assets/js/components/newTaskForm.js"></script>
 </head>
 
 <body>
@@ -52,7 +49,6 @@
         <form method="POST">
           <div class="task__content">
             <div class="task__title">
-              <p class="task__title-label"></p>
               <input class="task__title-field input" type="text" placeholder="Titre de la tâche" name="title" />
             </div>
             <div class="task__category">
@@ -95,12 +91,12 @@
               </button>
               <button class="task__button task__button--desarchive button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-undo"></i>
+                  <i class="fa-solid fa-pen-to-square"></i>
                 </span>
               </button>
               <button class="task__button task__button--validate button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-check-square-o"></i>
+                  <i class="fa-regular fa-square-check"></i>
                 </span>
               </button>
               <button class="task__button task__button--modify button is-warning is-small">
@@ -142,12 +138,12 @@
               </button>
               <button class="task__button task__button--desarchive button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-undo"></i>
+                  <i class="fa-solid fa-pen-to-square"></i>
                 </span>
               </button>
               <button class="task__button task__button--validate button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-check-square-o"></i>
+                  <i class="fa-regular fa-square-check"></i>
                 </span>
               </button>
               <button class="task__button task__button--modify button is-warning is-small">
@@ -189,12 +185,12 @@
               </button>
               <button class="task__button task__button--desarchive button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-undo"></i>
+                  <i class="fa-solid fa-pen-to-square"></i>
                 </span>
               </button>
               <button class="task__button task__button--validate button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-check-square-o"></i>
+                  <i class="fa-regular fa-square-check"></i>
                 </span>
               </button>
               <button class="task__button task__button--modify button is-warning is-small">
@@ -235,12 +231,12 @@
               </button>
               <button class="task__button task__button--desarchive button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-undo"></i>
+                  <i class="fa-solid fa-pen-to-square"></i>
                 </span>
               </button>
               <button class="task__button task__button--validate button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-check-square-o"></i>
+                  <i class="fa-regular fa-square-check"></i>
                 </span>
               </button>
               <button class="task__button task__button--modify button is-warning is-small">
@@ -282,12 +278,12 @@
               </button>
               <button class="task__button task__button--desarchive button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-undo"></i>
+                  <i class="fa-solid fa-pen-to-square"></i>
                 </span>
               </button>
               <button class="task__button task__button--validate button is-success is-small">
                 <span class="icon is-small">
-                  <i class="fa fa-check-square-o"></i>
+                  <i class="fa-regular fa-square-check"></i>
                 </span>
               </button>
               <button class="task__button task__button--modify button is-warning is-small">
@@ -314,6 +310,56 @@
       </div>
     </main>
   </div>
+
+  <template id="task-template">
+    <div class="task task--todo" data-category="Nom de la catégorie">
+      <div class="task__content">
+        <div class="task__title">
+          <p class="task__title-label">Titre de la tâche</p>
+          <input class="task__title-field input" type="text" value="Titre de la tâche" placeholder="Titre de la tâche"
+            name="title" />
+        </div>
+        <div class="task__category">
+          <p>Nom de la catégorie</p>
+        </div>
+        <div class="task__buttons">
+          <button class="task__button task__button--incomplete button is-success is-small">
+            <span class="icon is-small">
+              <i class="fa fa-step-backward"></i>
+            </span>
+          </button>
+          <button class="task__button task__button--desarchive button is-success is-small">
+            <span class="icon is-small">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </span>
+          </button>
+          <button class="task__button task__button--validate button is-success is-small">
+            <span class="icon is-small">
+              <i class="fa-regular fa-square-check"></i>
+            </span>
+          </button>
+          <button class="task__button task__button--modify button is-warning is-small">
+            <span class="icon is-small">
+              <i class="fa fa-pencil-square-o"></i>
+            </span>
+          </button>
+          <button class="task__button task__button--archive button is-danger is-small">
+            <span class="icon is-small">
+              <i class="fa fa-archive"></i>
+            </span>
+          </button>
+          <button class="task__button task__button--delete button is-danger is-small">
+            <span class="icon is-small">
+              <i class="fa fa-trash"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-bar__level" style="width:0%"></div>
+      </div>
+    </div>
+  </template>
 </body>
 
 </html>

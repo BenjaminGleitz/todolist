@@ -126,7 +126,90 @@ const task = {
      * @param {HTMLElement} taskElement 
      */
     markTaskAsComplete: function(taskElement) {
-        
+
         taskElement.classList.replace('task--todo','task--complete');
+    },
+
+    /**
+     * Méthode permettant de créer un nouvel élément tâche (sans l'ajouter dans le DOM)
+     * 
+     * @param {String} newTaskTitle 
+     * @param {String} newTaskCategoryName 
+     * 
+     * @return {HTMLElement}
+     */
+    createTaskElement: function(newTaskTitle, newTaskCategoryName) {
+
+        // --------------------------------------------------
+        // Création du clone
+        // --------------------------------------------------
+
+        // On crée une copie du template de tâche
+        // et on obtient un fragment de document qui n'appartient pas au DOM de la page
+        const taskCloneElement = document.getElementById('task-template').content.cloneNode(true);
+        // Le taskCloneElement est en fait enrobé dans un #document-fragment
+        // Le fragment de document sert de container à l'élément "task"
+        // console.log(taskCloneElement);
+
+        // Ainsi, si on veut travailler directement avec l'élément "task"
+        // on doit récupérer le contenu à l'intérieur du fragment de document
+
+        // L'élément "task" est le premier enfant du fragment de document
+        const newTaskElement = taskCloneElement.firstElementChild;
+        // console.log(newTaskElement);
+
+        // --------------------------------------------------
+        // Mise à jour des données de la nouvelle tâche
+        // --------------------------------------------------
+
+        // Titre de la tâche
+        task.updateTaskTitle(newTaskElement, newTaskTitle);
+
+        // Nom de la catégorie
+        task.updateTaskCategoryName(newTaskElement, newTaskCategoryName);
+
+        // ---------------------------------------------------- 
+        // On n'oublie pas d'ajouter les écouteurs d'évènement
+        // ----------------------------------------------------
+        task.bindSingleTaskEvents(newTaskElement);
+        console.log(newTaskElement);
+
+        // on retourne l'élément nouvelle tâche
+        // /!\ A ce stade, l'élément n'a toujours pas été ajouté dans le DOM /!\
+        return newTaskElement;
+    },
+
+    /**
+     * Méthode gérant la mise à jour du titre d'une tâche (DOM ou fragment)
+     * 
+     * @param {HTMLElement} taskElement La tâche à modifier
+     * @param {String} taskTitle Le nouveau titre de la tâche
+     */
+    updateTaskTitle: function(taskElement, taskTitle) {
+        // Récupération de l'élément contenant le titre de la tâche
+        const taskTitleLabelElement = taskElement.querySelector('.task__title-label');
+        // Mise à jour de sa valeur
+        taskTitleLabelElement.textContent = taskTitle;
+
+        // Récupération de l'élément input contenant le titre de la tâche
+        const taskTitleFieldElement = taskElement.querySelector('.task__title-field');
+        // Mise à jour de l'attribut value
+        taskTitleFieldElement.value = taskTitle;
+    },
+
+    /**
+     * Méthode gérant la mise à jour du nom de la catégorie d'une tâche
+     * 
+     * @param {HTMLElement} taskElement  La tâche à modifier
+     * @param {String} taskCategoryName Le nouveau nom de la catégorie de la tâche
+     */
+    updateTaskCategoryName: function(taskElement, taskCategoryName) {
+        // Mise à jour de l'attribut data-category
+        taskElement.dataset.category = taskCategoryName;
+
+        // Récupération de l'élément p contenant le nom de la catégorie
+        const taskCategoryNameElement = taskElement.querySelector('.task__category > p');
+        // Mise à jour de sa valeur
+        taskCategoryNameElement.textContent = taskCategoryName;
     },
 };
