@@ -43,7 +43,7 @@ const task = {
 
     handleEnableTaskTitleEditMode: function(evt) {
 
-        console.log('titre cliqué');
+        // console.log('titre cliqué');
 
         // - Pour passer visuellement en mode édition du titre de la tâche, on va devoir ajouter la classe 'task--edit' sur l'élément tâche
         // - Pour cela, on a donc besoin d'accéder à l'élément tâche contenant l'élément titre
@@ -106,7 +106,7 @@ const task = {
      * lors du clic sur le bouton 'complete' de la tâche
      */
     handleCompleteTask: function(evt) {
-        console.log('Au clic, je passe dans handleCompleteTask');
+        // console.log('Au clic, je passe dans handleCompleteTask');
 
         // Récupération du bouton à l'origine de l'évènement
         const taskCompleteButtonElement = evt.currentTarget;
@@ -172,7 +172,7 @@ const task = {
         // On n'oublie pas d'ajouter les écouteurs d'évènement
         // ----------------------------------------------------
         task.bindSingleTaskEvents(newTaskElement);
-        console.log(newTaskElement);
+        // console.log(newTaskElement);
 
         // on retourne l'élément nouvelle tâche
         // /!\ A ce stade, l'élément n'a toujours pas été ajouté dans le DOM /!\

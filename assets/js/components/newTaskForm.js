@@ -37,11 +37,11 @@ const newTaskForm = {
 
         // Récupération du titre de la tâche
         const newTaskTitle = newTaskFormElement.querySelector('.task__title-field').value;
-        console.log(newTaskTitle);
+        // console.log(newTaskTitle);
 
         // Récupération du titre de la tâche
         const newTaskCategoryName = newTaskFormElement.querySelector('.task__category select').value;
-        console.log(newTaskCategoryName);
+        // console.log(newTaskCategoryName);
 
         // Création de la nouvelle tâche
         const newTaskElement = task.createTaskElement(newTaskTitle, newTaskCategoryName);

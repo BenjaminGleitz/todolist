@@ -11,7 +11,7 @@ const app = {
      */
     init: function() {
 
-        console.log('le fichier app a bien été appellé');
+        // console.log('le fichier app a bien été appellé');
         tasksList.init();
         newTaskForm.init();
         categoriesList.init();
